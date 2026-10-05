@@ -1,30 +1,32 @@
 // This file contains the website's content and component structure
 import './App.css'
 import profileImage from './assets/profile.png'
-
+import {BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+// installed reacter-router-dom because react doesnt know how to make multiple pages
 // This object stores the words and links shown on the page.
 // You can edit the text here without needing to change the layout below.
 // Change these details to make this website yours.
 const siteInfo = {
-  name: 'Capybara WiCSE',
+  name: 'Julianna Uy',
   role: 'Computer science student',
-  intro: 'I am learning how to build useful things with code, one small project at a time.',
+  intro: 'I\'m looking forward to developing skills in web development and computer science, learning from others, and contributing to projects that make a difference.',
   // Replace profile.png in src/assets to use your own profile picture.
   image: profileImage,
   location: 'Based in Gainesville, FL',
-  email: 'capybara@ufl.edu',
-  about: 'I enjoy solving puzzles, learning new tools, and working with people who are curious. This website is a place to share what I am learning and making.',
+  email: 'juliannauy@ufl.edu',
+  about: 'I love to create, work with others, and learn new things. I want to use this website to share my progression as a student and as a person.',
   // Add, remove, or rename languages and tools in this list.
   skills: ['JavaScript', 'Python', 'React', 'HTML & CSS', 'Git & GitHub'],
   // Add a new project by copying one of these lines and changing its words.
   projects: [
     { title: 'Calculator', description: 'A simple calculator.', tag: 'Python project' },
-    { title: 'Your swamphacks project...', description: 'Coming Soon.', tag: 'TBD' },
+    { title: 'Study Spot Finder', description: 'An app to find study spots on campus.', tag: 'React project' },
+    { title: 'Swamphacks project', description: 'A project I\'m making for Swamphacks 2026.', tag: 'Hackathon project' }
   ],
   // Add your social links here. You can remove any of these if you don't want them to show up.
   links: {
-    github: 'https://github.com/your-username',
-    linkedin: 'https://www.linkedin.com/in/your-username',
+    github: 'https://github.com/juliannauy',
+    linkedin: 'https://www.linkedin.com/in/julianna-uy',
   },
 }
 
@@ -34,61 +36,84 @@ const firstName = siteInfo.name.split(' ')[0]
 // App is the main component, which means it describes the whole webpage.
 function App() {
   return (
-    // className connects this HTML-like element to styles in App.css.
-    <div className="site-shell">
-      <main>
+    <BrowserRouter>
+      <header className="header">
+        <a className="header-name" href="/">Julianna Uy</a>
+
+        <nav className="header-nav">
+          <Link to="/">As a Student</Link>
+          <Link to="/about">About Me</Link>
+        </nav>
+      </header>
+
+      <Routes>
+        <Route path="/" element={<StudentPage />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}
+      {/* className connects this HTML-like element to styles in App.css. */}
+      <div className="site-shell">
         {/* The hero is the first section visitors see. */}
-        <section className="hero">
-          {/* This side contains the introduction text. */}
-          <div className="hero-copy">
-            <p className="eyebrow">{siteInfo.role}</p>
-            <h1>Hi, I’m {firstName}.</h1>
-            <p className="intro">{siteInfo.intro}</p>
-          </div>
+            <section className="hero">
+              {/* This side contains the introduction text. */}
+              <div className="hero-copy">
+                <p className="eyebrow">{siteInfo.role}</p>
+                <h1>Hi, I’m {firstName}.</h1>
+                <p className="intro">{siteInfo.intro}</p>
+              </div>
 
-          {/* The image path and location come from siteInfo above. */}
-          <div className="profile">
-            <img className="profile-picture" src={siteInfo.image} alt={`Portrait of ${siteInfo.name}`} />
-            <p>{siteInfo.location}</p>
-          </div>
-        </section>
+              {/* The image path and location come from siteInfo above. */}
+              <div className="profile">
+                <img className="profile-picture" src={siteInfo.image} alt={`Portrait of ${siteInfo.name}`} />
+                <p>{siteInfo.location}</p>
+              </div>
+            </section>
+        <div className="page-layout">
+          <main>
 
-        {/* This section explains who the person is and lists their skills. */}
-        <section className="section" id="about">
-          <div className="section-label">01 / About me</div>
+            {/* This section explains who the person is and lists their skills. */}
+            <section className="section" id="about">
+              <div className="section-label">01 / About me</div>
 
-          <div className="section-content">
-            <h2>Curious by default.</h2>
-            <p>{siteInfo.about}</p>
+              <div className="section-content">
+                <h2>An Artist and Coder</h2>
+                <p>{siteInfo.about}</p>
 
-            {/* makes one bullet point for every item in siteInfo.skills. */}
-            <ul className="skill-list" aria-label="Skills">
-              {siteInfo.skills.map((skill) => <li key={skill}>{skill}</li>)}
-            </ul>
-          </div>
-        </section>
+                {/* makes one bullet point for every item in siteInfo.skills. */}
+                <ul className="skill-list" aria-label="Skills">
+                  {siteInfo.skills.map((skill) => <li key={skill}>{skill}</li>)}
+                </ul>
+              </div>
+            </section>
 
-        {/* This section makes one project row for every project in the list. */}
-        <section className="section" id="projects">
-          <div className="section-label">02 / Selected work</div>
+            {/* This section makes one project row for every project in the list. */}
+            
+          </main>
+          <aside className="sidebar">
+            <section className="section" id="projects">
+              <div className="section-label">02 / Selected work</div>
 
-          <div className="section-content">
-            <h2>Things I’m making.</h2>
+              <div className="section-content">
+                <h2>Things I’m making.</h2>
 
-            <div className="project-list">
-              {siteInfo.projects.map((project, index) => (
-                // React needs a key so it can keep track of each project row.
-                <article className="project" key={project.title}>
-                  <p className="project-number">0{index + 1}</p>
-                  <p className="project-tag">{project.tag}</p>
-                  <h3>{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      </main>
+                <div className="project-list">
+                  {siteInfo.projects.map((project, index) => (
+                    // React needs a key so it can keep track of each project row.
+                    <article className="project" key={project.title}>
+                      <p className="project-number">0{index + 1}</p>
+                      <p className="project-tag">{project.tag}</p>
+                      <h3>{project.title}</h3>
+                      <p className="project-description">{project.description}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </div>
 
       {/* The footer holds contact information and social links. */}
       <footer className="footer">
@@ -110,7 +135,7 @@ function App() {
 
         <p className="footer-note">Built with React + CSS</p>
       </footer>
-    </div>
+    </>
   )
 }
 
