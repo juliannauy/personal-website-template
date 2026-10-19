@@ -1,15 +1,13 @@
 // This file contains the website's content and component structure
 import './App.css'
 import profileImage from './assets/profile.png'
-import {BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-// installed reacter-router-dom because react doesnt know how to make multiple pages
 // This object stores the words and links shown on the page.
 // You can edit the text here without needing to change the layout below.
 // Change these details to make this website yours.
 const siteInfo = {
   name: 'Julianna Uy',
   role: 'Computer science student',
-  intro: 'I\'m looking forward to developing skills in web development and computer science, learning from others, and contributing to projects that make a difference.',
+  intro: 'I\'m a student at the University of Florida, and am looking forward to developing skills in web development and computer science, learning from others, and contributing to projects that make a difference.',
   // Replace profile.png in src/assets to use your own profile picture.
   image: profileImage,
   location: 'Based in Gainesville, FL',
@@ -34,25 +32,10 @@ const siteInfo = {
 const firstName = siteInfo.name.split(' ')[0]
 
 // App is the main component, which means it describes the whole webpage.
-function App() {
+
+function StudentPage() {
   return (
-    <BrowserRouter>
-      <header className="header">
-        <a className="header-name" href="/">Julianna Uy</a>
-
-        <nav className="header-nav">
-          <Link to="/">As a Student</Link>
-          <Link to="/about">About Me</Link>
-        </nav>
-      </header>
-
-      <Routes>
-        <Route path="/" element={<StudentPage />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </BrowserRouter>
-  )
-}
+    <>
       {/* className connects this HTML-like element to styles in App.css. */}
       <div className="site-shell">
         {/* The hero is the first section visitors see. */}
@@ -75,7 +58,7 @@ function App() {
 
             {/* This section explains who the person is and lists their skills. */}
             <section className="section" id="about">
-              <div className="section-label">01 / About me</div>
+              <div className="section-label">01 / My interests </div>
 
               <div className="section-content">
                 <h2>An Artist and Coder</h2>
@@ -138,5 +121,14 @@ function App() {
     </>
   )
 }
+function App() {
+  return (
+    <>
+      <header className="header" />
+      <StudentPage />
+    </>
+  )
+}
+
 
 export default App

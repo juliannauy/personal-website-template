@@ -5,10 +5,11 @@
   --muted: #5d7470;
   --paper: #f4f0e8;
   --line: #cbd5cb;
-  --accent: #cd6f99;
+  --accent: #708950;
   --cream: #e7efe5;
   --serif: Georgia, 'Times New Roman', serif;
   --sans: 'Trebuchet MS', Arial, sans-serif;
+  --accent2: #b4a669;
 }
 
 /* Change the fonts or base text size here if you want a different feel. */
@@ -28,7 +29,7 @@ a {
 
 .site-shell {
   /* Keeps the content from becoming too wide on large screens. */
-  max-width: 1400px
+  max-width: 1400px;
   margin: 0 auto;
   /* Change this padding to move content farther from the screen edges. */
   padding: 0 52px;
@@ -214,7 +215,7 @@ h2 {
   gap: 30px;
   padding: 25px 55px 25px;
   border-top: 1px solid var(--line);
-  background: #95b366;
+  background: #bfc296;
   margin-top: 80px;
   
 }
@@ -223,6 +224,10 @@ h2 {
   font-family: var(--serif);
   font-size: large;
   text-decoration: none;
+}
+
+.footer-email:hover {
+  color: var(--accent);
 }
 
 .footer-links {
@@ -316,4 +321,8 @@ h2 {
     grid-column: 3;
     grid-row: 1 / 4;
   }
+}
+.header {
+  height: 32px;
+  background: #bfc296;
 }
